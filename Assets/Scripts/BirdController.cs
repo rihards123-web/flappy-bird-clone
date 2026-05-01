@@ -7,17 +7,25 @@ public class BirdController : MonoBehaviour
 
     [SerializeField] private float jumpForce;
 
+    [SerializeField] private float rotationSpeed;
+
+    [SerializeField] private float targetAngle;
+
+    private float currentAngle;
+
     private bool shouldJump = false;
 
     // Update is called once per frame
     void Update()
     {
         isSpacePressed();
+        RotateBird();
     }
 
     private void FixedUpdate()
     {
         Jump();
+        
     }
 
     private void Jump()
@@ -25,6 +33,7 @@ public class BirdController : MonoBehaviour
         if (!GameController.Instance.isGameOver && shouldJump == true)
         {
             birdRigidBody.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
+            birdRigidBody.rotation = 25f;
             shouldJump = false;
         }  
     }
@@ -34,6 +43,17 @@ public class BirdController : MonoBehaviour
         if (!GameController.Instance.isGameOver && Keyboard.current.spaceKey.wasPressedThisFrame)
         {
             shouldJump = true;
+        }
+    }
+
+    private void RotateBird()
+    {
+        if (!GameController.Instance.isGameOver)
+        {
+            currentAngle = birdRigidBody.rotation;
+            
+
+            birdRigidBody.rotation = Mathf.MoveTowards(currentAngle, targetAngle, rotationSpeed * Time.deltaTime);
         }
     }
 }

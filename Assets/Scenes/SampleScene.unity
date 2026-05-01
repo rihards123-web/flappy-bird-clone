@@ -186,6 +186,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BirdController
   birdRigidBody: {fileID: 1186722288}
   jumpForce: 5
+  rotationSpeed: 50
+  targetAngle: -35
 --- !u!4 &183399673
 Transform:
   m_ObjectHideFlags: 0
@@ -1144,7 +1146,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.23, y: -4.51, z: 0}
-  m_LocalScale: {x: 25.65, y: 1, z: 1}
+  m_LocalScale: {x: 25, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
