@@ -565,7 +565,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 994ab72fb6e8455438b4e61ea7c00256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollisionController
-  hasCollided: 0
 --- !u!1 &1611696216
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,10 +596,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameController
   spawnLocation: {x: 7, y: 0, z: 0}
   Pipes: {fileID: 7754756732256688321, guid: 97e772d9b813a354391a029bda42efe6, type: 3}
-  spawnDelay: 1.5
+  spawnDelay: 1
   minYPossition: -2.1
   maxYPossition: 2.1
   birdRigidBody: {fileID: 1186722288}
+  isGameOver: 0
 --- !u!4 &1611696218
 Transform:
   m_ObjectHideFlags: 0

@@ -20,21 +20,20 @@ public class BirdController : MonoBehaviour
         Jump();
     }
 
-    public void Jump()
+    private void Jump()
     {
-        if (shouldJump == true)
+        if (!GameController.Instance.isGameOver && shouldJump == true)
         {
             birdRigidBody.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
-
             shouldJump = false;
-        }
+        }  
     }
 
     private void isSpacePressed()
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        if (!GameController.Instance.isGameOver && Keyboard.current.spaceKey.wasPressedThisFrame)
         {
-             shouldJump = true;
+            shouldJump = true;
         }
     }
 }

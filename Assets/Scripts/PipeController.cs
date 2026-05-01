@@ -14,11 +14,14 @@ public class PipeController : MonoBehaviour
 
     public void MovePipe()
     {
-        this.transform.Translate(Vector3.left * pipeMoveSpeed * Time.deltaTime);
-
-        if (this.transform.position.x < minXPosition)
+        if (!GameController.Instance.isGameOver)
         {
-            Destroy(this.gameObject);
+            this.transform.Translate(Vector3.left * pipeMoveSpeed * Time.deltaTime);
+
+            if (this.transform.position.x < minXPosition)
+            {
+                Destroy(this.gameObject);
+            }
         }
     }
 }

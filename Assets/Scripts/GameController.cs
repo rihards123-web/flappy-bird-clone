@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    public static GameController Instance { get; private set; }
+
+
     [SerializeField] private Vector3 spawnLocation;
 
     [SerializeField] private GameObject Pipes;
@@ -15,15 +18,22 @@ public class GameController : MonoBehaviour
 
     [SerializeField] private Rigidbody2D birdRigidBody;
 
-    private bool isGameOver;
+    public bool isGameOver;
 
     private float timer;
 
-    private CollisionController collisionController;
+  
 
     private void Awake()
     {
-        collisionController = FindAnyObjectByType<CollisionController>();
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     void Update()
@@ -36,14 +46,10 @@ public class GameController : MonoBehaviour
 
             timer = 0f;
         }
-
-        GameOver();
     }
 
     private void SpawnPipe()
     {
-        isGameOver = collisionController.hasCollided;
-
         if (!isGameOver)
         {
             float randomYOffset = Random.Range(minYPossition, maxYPossition);
@@ -55,13 +61,14 @@ public class GameController : MonoBehaviour
     }
 
 
-    private void GameOver()
+    public void GameOver() 
     {
-        isGameOver = collisionController.hasCollided;
+        isGameOver = true;
 
         if (isGameOver)
         {
             birdRigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
         }
+
     }
 }
