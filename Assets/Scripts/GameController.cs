@@ -8,6 +8,12 @@ public class GameController : MonoBehaviour
 
     [SerializeField] private float spawnDelay; // 3.5 seconds.
 
+    // offsets for pipes. 
+
+    [SerializeField] private float minYPossition;
+    [SerializeField] private float maxYPossition;
+
+
     private float timer;
 
     void Update()
@@ -24,6 +30,10 @@ public class GameController : MonoBehaviour
 
     private void SpawnPipe()
     {
+        float randomYOffset = Random.Range(minYPossition, maxYPossition);
+
+        spawnLocation.y = randomYOffset;
+
         Instantiate(Pipes, spawnLocation, Quaternion.identity);
     }
 

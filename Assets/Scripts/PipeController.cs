@@ -16,5 +16,4 @@ public class PipeController : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-
 }
