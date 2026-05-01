@@ -1,6 +1,5 @@
-using NUnit.Framework;
+using TMPro;
 using UnityEngine;
-using static UnityEngine.InputManagerEntry;
 
 public class GameController : MonoBehaviour
 {
@@ -26,6 +25,10 @@ public class GameController : MonoBehaviour
 
     private float timer;
 
+    public int score = 0;
+
+    [SerializeField] private TextMeshProUGUI scoreText;
+
     private void Awake()
     {
         if (Instance == null)
@@ -48,6 +51,8 @@ public class GameController : MonoBehaviour
 
             timer = 0f;
         }
+
+  
     }
 
     private void SpawnPipe()
@@ -62,6 +67,20 @@ public class GameController : MonoBehaviour
         }
     }
 
+
+    public void UpdateScore()
+    {
+        score += 1;
+
+        scoreText.SetText("" + score);
+    }
+
+    public void ResetScore()
+    {
+        score = 0;
+
+        scoreText.SetText("" + score);
+    }
 
     public void GameOver() 
     {
@@ -98,7 +117,9 @@ public class GameController : MonoBehaviour
         }
 
         timer = 0f;
-        
+
+        ResetScore();
+
         isGameOver = false;
     }
 }

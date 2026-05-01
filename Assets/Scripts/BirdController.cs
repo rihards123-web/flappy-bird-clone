@@ -19,6 +19,7 @@ public class BirdController : MonoBehaviour
     void Update()
     {
         isSpacePressed();
+        isTouchScreenPressed();
         RotateBird();
     }
 
@@ -41,6 +42,14 @@ public class BirdController : MonoBehaviour
     private void isSpacePressed()
     {
         if (!GameController.Instance.isGameOver && Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            shouldJump = true;
+        }
+    }
+
+    private void isTouchScreenPressed()
+    {
+        if (!GameController.Instance.isGameOver && Touchscreen.current.primaryTouch.press.wasPressedThisFrame)
         {
             shouldJump = true;
         }
