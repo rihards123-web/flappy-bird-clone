@@ -13,8 +13,18 @@ public class GameController : MonoBehaviour
     [SerializeField] private float minYPossition;
     [SerializeField] private float maxYPossition;
 
+    [SerializeField] private Rigidbody2D birdRigidBody;
+
+    private bool isGameOver;
 
     private float timer;
+
+    private CollisionController collisionController;
+
+    private void Awake()
+    {
+        collisionController = FindAnyObjectByType<CollisionController>();
+    }
 
     void Update()
     {
@@ -26,15 +36,32 @@ public class GameController : MonoBehaviour
 
             timer = 0f;
         }
+
+        GameOver();
     }
 
     private void SpawnPipe()
     {
-        float randomYOffset = Random.Range(minYPossition, maxYPossition);
+        isGameOver = collisionController.hasCollided;
 
-        spawnLocation.y = randomYOffset;
+        if (!isGameOver)
+        {
+            float randomYOffset = Random.Range(minYPossition, maxYPossition);
 
-        Instantiate(Pipes, spawnLocation, Quaternion.identity);
+            spawnLocation.y = randomYOffset;
+
+            Instantiate(Pipes, spawnLocation, Quaternion.identity);
+        }
     }
 
+
+    private void GameOver()
+    {
+        isGameOver = collisionController.hasCollided;
+
+        if (isGameOver)
+        {
+            birdRigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+    }
 }

@@ -9,6 +9,11 @@ public class PipeController : MonoBehaviour
 
     void Update()
     {
+        MovePipe();
+    }
+
+    public void MovePipe()
+    {
         this.transform.Translate(Vector3.left * pipeMoveSpeed * Time.deltaTime);
 
         if (this.transform.position.x < minXPosition)
