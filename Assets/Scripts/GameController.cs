@@ -83,6 +83,8 @@ public class GameController : MonoBehaviour
 
         birdRigidBody.transform.position = new Vector3(0, 0, 0);
 
+        birdRigidBody.rotation = 0f;
+
         birdRigidBody.constraints = RigidbodyConstraints2D.None;
 
         // Find every active object in the current scene that has a PipeController component,
