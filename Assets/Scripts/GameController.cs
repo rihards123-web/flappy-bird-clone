@@ -93,6 +93,11 @@ public class GameController : MonoBehaviour
             restartGameButton.SetActive(true);
         }
 
+        // highscore logic lol, must be improved A LOT, because this is stupid. 
+
+        PlayerPrefs.SetInt("HighScore", score);
+        var highscore = PlayerPrefs.GetInt("HighScore");
+        Debug.Log(highscore);
     }
 
     // attached to restart game button in the scene. 
