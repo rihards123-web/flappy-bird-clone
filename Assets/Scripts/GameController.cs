@@ -28,6 +28,10 @@ public class GameController : MonoBehaviour
     public int score = 0;
 
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI highScoreText;
+    [SerializeField] private GameObject highScoreContainer;
+
+    private int highScore; 
 
     private void Awake()
     {
@@ -39,7 +43,10 @@ public class GameController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        highScore = PlayerPrefs.GetInt("HighScore", 0);
     }
+
 
     void Update()
     {
@@ -82,6 +89,19 @@ public class GameController : MonoBehaviour
         scoreText.SetText("" + score);
     }
 
+    public void SetHighScore()
+    {
+        if (score > highScore)
+        {
+            highScore = score;
+            PlayerPrefs.SetInt("HighScore", highScore);
+        }
+
+        highScoreText.SetText("HighScore: " + highScore);
+
+        highScoreContainer.SetActive(true);
+    }
+
     public void GameOver() 
     {
         isGameOver = true;
@@ -91,19 +111,17 @@ public class GameController : MonoBehaviour
             birdRigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
 
             restartGameButton.SetActive(true);
+
+            SetHighScore();
         }
-
-        // highscore logic lol, must be improved A LOT, because this is stupid. 
-
-        PlayerPrefs.SetInt("HighScore", score);
-        var highscore = PlayerPrefs.GetInt("HighScore");
-        Debug.Log(highscore);
     }
 
     // attached to restart game button in the scene. 
     public void RestartGame()
     {
         restartGameButton.SetActive(false);
+
+        highScoreContainer.SetActive(false);
 
         birdRigidBody.transform.position = new Vector3(0, 0, 0);
 
