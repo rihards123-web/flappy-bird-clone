@@ -26,7 +26,6 @@ public class BirdController : MonoBehaviour
     private void FixedUpdate()
     {
         Jump();
-        
     }
 
     private void Jump()
@@ -62,7 +61,6 @@ public class BirdController : MonoBehaviour
         {
             currentAngle = birdRigidBody.rotation;
             
-
             birdRigidBody.rotation = Mathf.MoveTowards(currentAngle, targetAngle, rotationSpeed * Time.deltaTime);
         }
     }

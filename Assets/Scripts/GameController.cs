@@ -58,8 +58,6 @@ public class GameController : MonoBehaviour
 
             timer = 0f;
         }
-
-  
     }
 
     private void SpawnPipe()
@@ -110,9 +108,9 @@ public class GameController : MonoBehaviour
 
         if (isGameOver)
         {
-            SoundController.Instance.BirdDies();
-
             SoundController.Instance.BirdCollidesWithPipe();
+
+            SoundController.Instance.BirdDies();
 
             birdRigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
 

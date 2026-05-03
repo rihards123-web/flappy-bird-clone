@@ -16,6 +16,7 @@ public class PipeController : MonoBehaviour
     {
         if (!GameController.Instance.isGameOver)
         {
+            // moves pipe to the left, with the speed of 5 unity units per second. 
             this.transform.Translate(Vector3.left * pipeMoveSpeed * Time.deltaTime);
 
             if (this.transform.position.x < minXPosition)

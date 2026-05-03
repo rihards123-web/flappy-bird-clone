@@ -42,5 +42,4 @@ public class SoundController : MonoBehaviour
     {
         audioSource.PlayOneShot(wingFlap);
     }
-
 }
