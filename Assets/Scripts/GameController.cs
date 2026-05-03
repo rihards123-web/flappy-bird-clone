@@ -80,6 +80,8 @@ public class GameController : MonoBehaviour
         score += 1;
 
         scoreText.SetText("" + score);
+
+        SoundController.Instance.BirdGetsScore();
     }
 
     public void ResetScore()
@@ -108,6 +110,10 @@ public class GameController : MonoBehaviour
 
         if (isGameOver)
         {
+            SoundController.Instance.BirdDies();
+
+            SoundController.Instance.BirdCollidesWithPipe();
+
             birdRigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
 
             restartGameButton.SetActive(true);

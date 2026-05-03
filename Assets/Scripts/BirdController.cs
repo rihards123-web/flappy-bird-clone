@@ -33,6 +33,7 @@ public class BirdController : MonoBehaviour
     {
         if (!GameController.Instance.isGameOver && shouldJump == true)
         {
+            SoundController.Instance.BirdFlapsWing();
             birdRigidBody.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
             birdRigidBody.rotation = 25f;
             shouldJump = false;
