@@ -1576,7 +1576,7 @@ MonoBehaviour:
   Pipes: {fileID: 7754756732256688321, guid: 97e772d9b813a354391a029bda42efe6, type: 3}
   spawnDelay: 1.5
   minYPossition: -1.9
-  maxYPossition: 2.2
+  maxYPossition: 1.94
   birdRigidBody: {fileID: 1186722288}
   restartGameButton: {fileID: 91724755}
   isGameOver: 0
@@ -1893,7 +1893,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6836515755837338901, guid: 97e772d9b813a354391a029bda42efe6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.94
       objectReference: {fileID: 0}
     - target: {fileID: 6836515755837338901, guid: 97e772d9b813a354391a029bda42efe6, type: 3}
       propertyPath: m_LocalPosition.z
