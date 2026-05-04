@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,13 +6,17 @@ public class BirdController : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D birdRigidBody;
 
+    [SerializeField] private Transform birdVisual;
+
     [SerializeField] private float jumpForce;
+
+    [SerializeField] private float maxRotationAngle; // 25
 
     [SerializeField] private float rotationSpeed;
 
-    [SerializeField] private float targetAngle;
+    [SerializeField] private Quaternion targetAngle;
 
-    private float currentAngle;
+    private Quaternion currentAngle;
 
     private bool shouldJump = false;
 
@@ -33,8 +38,13 @@ public class BirdController : MonoBehaviour
         if (!GameController.Instance.isGameOver && shouldJump == true)
         {
             SoundController.Instance.BirdFlapsWing();
+
+            birdRigidBody.linearVelocity = new Vector2(birdRigidBody.linearVelocity.x, 0f);
+
             birdRigidBody.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
-            birdRigidBody.rotation = 25f;
+
+
+            birdVisual.transform.rotation = Quaternion.Euler(0, 0, maxRotationAngle);
             shouldJump = false;
         }  
     }
@@ -59,9 +69,9 @@ public class BirdController : MonoBehaviour
     {
         if (!GameController.Instance.isGameOver)
         {
-            currentAngle = birdRigidBody.rotation;
-            
-            birdRigidBody.rotation = Mathf.MoveTowards(currentAngle, targetAngle, rotationSpeed * Time.deltaTime);
+            currentAngle = birdVisual.transform.rotation;
+
+            birdVisual.transform.rotation = Quaternion.RotateTowards(currentAngle, targetAngle, rotationSpeed * Time.deltaTime);
         }
     }
 }
