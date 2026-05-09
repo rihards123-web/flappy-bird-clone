@@ -31,6 +31,8 @@ public class GameController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI highScoreText;
     [SerializeField] private GameObject highScoreContainer;
 
+    public BirdController birdController;
+
     private int highScore; 
 
     private void Awake()
@@ -45,6 +47,8 @@ public class GameController : MonoBehaviour
         }
 
         highScore = PlayerPrefs.GetInt("HighScore", 0);
+
+        birdController = FindAnyObjectByType<BirdController>();
     }
 
 
@@ -130,6 +134,8 @@ public class GameController : MonoBehaviour
         birdRigidBody.transform.position = new Vector3(0, 0, 0);
 
         birdRigidBody.rotation = 0f;
+
+        birdController.birdVisual.transform.rotation = Quaternion.identity;
 
         birdRigidBody.constraints = RigidbodyConstraints2D.None;
 

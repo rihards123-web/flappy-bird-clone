@@ -6,7 +6,7 @@ public class BirdController : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D birdRigidBody;
 
-    [SerializeField] private Transform birdVisual;
+    [SerializeField] public Transform birdVisual;
 
     [SerializeField] private float jumpForce;
 
